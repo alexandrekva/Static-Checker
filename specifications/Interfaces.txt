@@ -1,0 +1,15 @@
+Interfaces (conceitual)
+
+fun findFile(filePathName: String): File?
+
+fun readFile(file: File): List<String>
+
+fun filterFile(stringList: List<String>): List<String>
+
+fun analyzeLine(line: String): LineData
+
+fun checkAtom(string: String): AtomData
+
+fun generateLexicalAnalysis(): File
+
+fun generateSymbolTableAnalysis(): File

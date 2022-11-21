@@ -1,0 +1,15 @@
+Projeto conceitual da implementação:
+
+Etapas
+    1 - Buscar arquivo com extensão .222
+        Caso seja encontrado, retornar o arquivo, se não, retornar nulo.
+
+    2 - Transformar aquivo numa lista de strings e transformar todos os caracteres em maiúsculos.
+
+    3 - Filtrar caracteres inválidos e retornar a nova lista de strings filtrada.
+
+    4 - Iterar por cada linha da lista de strings filtradas para realizar uma análise de cada uma.
+
+    5 - Realizar analise da linha e guardar as informações importantes para a geração dos relatórios.
+
+    6 - Gerar os relatórios.

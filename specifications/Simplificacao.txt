@@ -1,0 +1,48 @@
+Simplificação:
+
+arq-programa = "programa" nom-programa "declaracoes" lista-declaracoes" fim-declaracoes" "funcoes" lista-func "fim-funcoes" "fim-programa".
+lista-declaracoes = {declaracao-var ";"} declaracao-var.
+declaracao-var = "tipo-var" especificacao-tipo ["[" "]"] ":" (lista-var | lista-var-vetor).
+lista-var = {varaivel ","} variavel.
+lista-var-vetor = {variavel "[" cons-inteiro "]" ","} variavel "[" cons-inteiro "]".
+especificacao-tipo = "vazio" | "real" | "inteiro" | "cadeia" | "logico" | "caracter".
+lista-func = {declaracao-func ";"} declaracao-func.
+declaracao-func = "tipo-func" especificacao-tipo ":" nom-funcao "(" pass-parametros ")" comando "fim-func".
+pass-parametros = lista-param-tipado | "?".
+lista-param-tipado = {param-tipado ";"} param-tipado.
+param-tipado = "tipo-param" especificaca-tipo ":" lista-param.
+lista-param = {parametro ","} parametro.
+parametro = variavel ["[" cons-inteiro "]"].
+comando = cmd-bloco | cmd-se | cmd-repet | cmd-retorno | cmd-pausa | cmd-impr | cmd-atrib.
+cmd-bloco = ("{" lista-cmd "}") | comando.
+lista-cmd = {comando ";"} comando.
+cmd-se = "se" "(" expr-logica ")" comando ["senao" comando] "fim-se".
+cmd-repet = "enquanto" "(" expr-logica ")" comando "fim-enquanto".
+cmd-retorno = "retorna" [expr-arit].
+cmd-pausa = "pause".
+cmd-impr = "imprime" expr-arit.
+cmd-atrib = var ":=" (expr-arit | expr-logica).
+var = variavel ["[" cons-inteiro "]"].
+expr-logica = (expr-logica operad-relac expr-arit) | expr-arit | "(" expr-logica ")". //Não consegui eliminar a recursão
+expr-arit = epxr-soma.
+operad-relac = "<=" | "<" | ">" | ">=" | "==" | "!=" | "#".
+expr-soma = termo {operador-soma termo}.
+operad-soma = "+" | "-".
+termo = expr-unaria {operad-mult expr-unaria}.
+operador-mult = "*" | "/" | "%".
+expr-unaria = {"-"} fator.
+fator = ("(" expr-arit ")") | var | constante.
+constante = numeros | cadeias | "true" | "false".
+numeros = cons-inteiro | cons-real.
+cadeias = (""" {("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | " " | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") | "$" | "_" | "."} (("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | " " | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") | "$" | "_" | ".") """) | ("'" ("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") "'").
+nom-programa = ("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") {("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")}.
+variavel = ("_" | ("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z")) {("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") | "_"}.
+nom-funcao = ("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") {("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")}.
+cons-inteiro = digitos-decimal.
+digitos-decimal = ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") {("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9")}.
+cons-real = digitos-decimal ""." digitos-decimal [parte-exponencial].
+parte-exponencial = "e" ["-" | "+"] digitos-decimal.
+cons-cadeia = (""" {("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | " " | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") | "$" | "_" | "."} (("a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z") | " " | ("0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9") | "$" | "_" | ".") """).
+
+
+
