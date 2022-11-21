@@ -1,0 +1,70 @@
+arq-programa = “programa” nom-programa “declaracoes” lista-declaracoes “fim-declaracoes” “funcoes” lista-func ”fim-funcoes” “fim-programa”.
+
+lista-declaracoes = declaracao-var { “;” declaracao-var } .
+
+declaracao-var = “tipo-var” especificacao-tipo ( “:” lista-var | “[ ]:” lista-var-vetor ) .
+
+lista-var = variavel  { “,” variavel } .
+
+lista-var-vetor = variavel “[“ cons-inteiro “]” { “,” variavel “[“ cons-inteiro “]” } .
+
+especificacao-tipo = “vazio” | “real” | ”inteiro” | “cadeia” | “logico” | “caracter” .
+
+lista-func = declaracao-func { “;”  declaracao-func } .
+
+declaracao-func = “tipo-func” especificacao-tipo “:” nom-funcao “(“ pass-parametros “)” comando “fim-func” .
+
+pass-parametros = lista-param-tipado | “?” .
+
+lista-param-tipado = param-tipado { “;” param-tipado } .
+
+param-tipado = “tipo-param” especificacao-tipo “:” lista-param .
+
+lista-param = parametro { “,” parametro } .
+
+parametro = variavel [ “[“ cons-inteiro “]” ] .
+
+comando = cmd-bloco | cmd-se | cmd-repet | cmd-retorno | cmd-pausa | cmd-impr | cmd-atrib .
+
+cmd-bloco = “{“ lista-cmd “}” | comando
+
+lista-cmd = comando  { “;” comando } . 
+
+cmd-se = “se” “(“ expr-logica “)” comando [ “senao” comando ] “fim-se” .
+
+cmd-repet = “enquanto” “(“ expr-logica “)” comando “fim-enquanto” .
+
+cmd-retorno = “retorna” [ expr-arit ] .
+
+cmd-pausa = “pausa” .
+
+cmd-impr = “imprime” expr-arit .
+
+cmd-atrib = var “:=” ( expr-arit | expr-logica ) .
+
+var = variavel [ “[“ cons-inteiro “]” ] .
+
+expr-logica =  expr-logica operad-relac expr-arit  |  expr-arit  |  “(“ expr-logica “)” . 
+
+expr-arit = expr-soma .
+
+operad-relac = “<=”  |  “<”  |  “>”  |  “>=”  |  “==”  |  “!=”  |  “#” .
+
+expr-soma = termo  { operad-soma  termo } .
+
+operad-soma = “+”  |  “-” .
+
+termo = expr-unaria { operad-mult  expr-unaria } .
+
+operad-mult = “*”  |  “/”  |  “%” .
+
+expr-unaria = { “-” }  fator .
+
+fator = “(“ expr-arit “)”  |  var  |  constante .
+
+constante = numeros  |  cadeias  |  “true”  |  “false” .
+
+numeros = cons-inteiro | cons-real .
+
+cadeias = cons-cadeia | cons-caracter .
+
