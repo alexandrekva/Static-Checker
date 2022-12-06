@@ -5,3 +5,4 @@ comando = ( “{“ comando  { “;” comando } “}” | comando ) | “se” 
 expr-logica =  expr-logica ( “<=”  |  “<”  |  “>”  |  “>=”  |  “==”  |  “!=”  |  “#” ) expr-soma  |  expr-soma  |  “(“ expr-logica “)” . 
 
 expr-soma = ({ “-” }  ( “(“ expr-soma “)”  |  variavel [ “[“ cons-inteiro “]” ] |  cons-inteiro | cons-real |  cons-cadeia | cons-caracter |  “true”  |  “false” )) { ( “*”  |  “/”  |  “%” )  ({ “-” }  ( “(“ expr-soma “)”  |  variavel [ “[“ cons-inteiro “]” ] |  cons-inteiro | cons-real |  cons-cadeia | cons-caracter |  “true”  |  “false” )) }  { ( “+”  |  “-” )  ({ “-” }  ( “(“ expr-soma “)”  |  variavel [ “[“ cons-inteiro “]” ] |  cons-inteiro | cons-real |  cons-cadeia | cons-caracter |  “true”  |  “false” )) { ( “*”  |  “/”  |  “%” )  ({ “-” }  ( “(“ expr-soma “)”  |  variavel [ “[“ cons-inteiro “]” ] |  cons-inteiro | cons-real |  cons-cadeia | cons-caracter |  “true”  |  “false” )) } } .
+

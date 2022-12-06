@@ -1,6 +1,9 @@
+import analyser.FileCleaner
+import analyser.LexicalAnalyser
 import core.Strings
 import core.TitleProperty
 import utils.FileUtils
+import utils.TeamIdentifierBuilder
 import java.io.File
 
 class StaticChecker {
@@ -9,24 +12,32 @@ class StaticChecker {
     init {
         welcomeUser()
         val file = getFile()
-        val fileLines = fileUtils.readFile(file)
+        val fileCleaner = FileCleaner(file)
+        val cleanFile = fileCleaner.getCleanFile()
+
+        val lexicalAnalyser = LexicalAnalyser(cleanFile)
+        lexicalAnalyser.analyseFile()
+
+        //fileUtils.generateFile("test.LEX", TeamIdentifierBuilder.getTeamIdentifier().toString())
     }
 
     private fun getFile(): File {
         var invalidFile = true
         var file: File? = null
 
-        while (invalidFile) {
-            getFileName()?.let { file = searchFile(it) }
-            if (file != null) invalidFile = false
+        getFileName(Strings.enterFileText)?.let { file = searchFile(it) }
+        if (file != null) invalidFile = false
 
+        while (invalidFile) {
+            getFileName(Strings.enterFileTextInvalid)?.let { file = searchFile(it) }
+            if (file != null) invalidFile = false
         }
 
         return file!!
     }
 
-    private fun getFileName(): String? {
-        print(Strings.enterFileText)
+    private fun getFileName(message: String): String? {
+        print(message)
         return readLine()
     }
 

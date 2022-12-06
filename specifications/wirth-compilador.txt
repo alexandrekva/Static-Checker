@@ -34,37 +34,37 @@ cmd-se = “se” “(“ expr-logica “)” comando [ “senao” comando ] �
 
 cmd-repet = “enquanto” “(“ expr-logica “)” comando “fim-enquanto” .
 
-cmd-retorno = “retorna” [ expr-arit ] .
+cmd-retorno = “retorna” [ { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } } ] .
 
 cmd-pausa = “pausa” .
 
-cmd-impr = “imprime” expr-arit .
+cmd-impr = “imprime” { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } } .
 
-cmd-atrib = var “:=” ( expr-arit | expr-logica ) .
+cmd-atrib = var “:=” ( { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } } | expr-logica ) .
 
 var = variavel [ “[“ cons-inteiro “]” ] .
 
-expr-logica =  expr-logica operad-relac expr-arit  |  expr-arit  |  “(“ expr-logica “)” . 
+expr-logica =  ((expr-logica (“<=” | “<” | “>” | “>=” | “==” | “!=” | “#”) { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } })  |  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } }  |  (“(“ expr-logica “)”)) .
 
-expr-arit = expr-soma .
+expr-arit = { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) }  { (“+” | “-”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) { (“*” | “/” | “%”)  { “-” }  ((“(“ expr-arit “)”) | var | ((cons-inteiro | cons-real) | (cons-cadeia | cons-caracter) | “true” | “false”)) } } .
 
-operad-relac = “<=”  |  “<”  |  “>”  |  “>=”  |  “==”  |  “!=”  |  “#” .
+operad-relac =  .
 
-expr-soma = termo  { operad-soma  termo } .
+expr-soma =  .
 
-operad-soma = “+”  |  “-” .
+operad-soma =  .
 
-termo = expr-unaria { operad-mult  expr-unaria } .
+termo =  .
 
-operad-mult = “*”  |  “/”  |  “%” .
+operad-mult =  .
 
-expr-unaria = { “-” }  fator .
+expr-unaria =  .
 
-fator = “(“ expr-arit “)”  |  var  |  constante .
+fator =  .
 
-constante = numeros  |  cadeias  |  “true”  |  “false” .
+constante =  .
 
-numeros = cons-inteiro | cons-real .
+numeros =  .
 
-cadeias = cons-cadeia | cons-caracter .
+cadeias =  .
 

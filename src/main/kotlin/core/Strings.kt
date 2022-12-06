@@ -10,8 +10,9 @@ class Strings {
                 "                                                              "
 
         val welcomeText = "Bem-vindo ao analisador sintático." +
-                "\n***São aceitos textos com a extensão .222, e não é necessário explicitar a extensão do arquivo***" +
+                "\n\n***São aceitos textos com a extensão .222, e não é necessário explicitar a extensão do arquivo***" +
                 "\n***Também pode ser indicado o caminho do arquivo + título***"
-        val enterFileText = "Digite o título do arquivo que deseja analisar:"
+        val enterFileText = "\nDigite o título do arquivo que deseja analisar:"
+        val enterFileTextInvalid = "Arquivo não encontrado. Digite novamente o título do arquivo que deseja analisar:"
     }
 }

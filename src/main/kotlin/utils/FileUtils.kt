@@ -32,8 +32,14 @@ class FileUtils {
 
     fun readFile(file: File): List<String> {
         val fileStringLines = mutableListOf<String>()
-        file.forEachLine { fileStringLines.add(it.uppercase()) }
+        file.forEachLine {
+            fileStringLines.add(it.uppercase())
+        }
 
         return fileStringLines
+    }
+
+    fun generateFile(fileName: String, fileContent: String) {
+        File(fileName).writeText(fileContent)
     }
 }
